@@ -4,8 +4,8 @@ from keras.layers import Dense
 import matplotlib.pyplot as plt
 
 # Generates the data (in -> cm)
-inches = np.linspace(0, 100, 100)           # Creates 100 numbers (0 - 100)
-cm = inches * 2.54                                          # Converts inches to centimeters
+inches = np.linspace(0, 100, 100)        # Creates 100 numbers (0 - 100)
+cm = inches * 2.54                                       # Converts inches to centimeters
 
 # Shapes data for Keras (samples, features)
 inches = inches.reshape(-1, 1)
@@ -30,9 +30,20 @@ history = model.fit(
 )
 
 # Tests the trained model with new sample inputs
-test_inches = np.array([[5], [10], [25]])   # Example values to predict
+test_inches = np.array([[5], [10], [25]])       # Example values to predict
 predicted_cm = model.predict(test_inches)
 
 # Prints predicted centimeter values for each test input
 for i, inch in enumerate(test_inches):
     print(f"{inch[0]} inches -> {predicted_cm[i][0]:.2f} cm")
+
+# Predicts centimeter values for all training data for visualization
+predicted_values = model.predict(inches)
+
+# Plots actual vs predicted values
+plt.scatter(inches, cm, label='Actual')                                         # Actual dataset points
+plt.plot(inches, predicted_values, color='red', label='Predicted')        # Model predictions
+plt.xlabel('Inches')
+plt.ylabel('Centimeters')
+plt.legend()
+plt.show()
