@@ -28,3 +28,11 @@ history = model.fit(
     batch_size=10,         # Number of samples per gradient update
     verbose=1              # Shows progress bar during training
 )
+
+# Tests the trained model with new sample inputs
+test_inches = np.array([[5], [10], [25]])   # Example values to predict
+predicted_cm = model.predict(test_inches)
+
+# Prints predicted centimeter values for each test input
+for i, inch in enumerate(test_inches):
+    print(f"{inch[0]} inches -> {predicted_cm[i][0]:.2f} cm")
