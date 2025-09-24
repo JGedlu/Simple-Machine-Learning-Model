@@ -43,7 +43,9 @@ predicted_values = model.predict(inches)
 # Plots actual vs predicted values
 plt.scatter(inches, cm, label='Actual')                                         # Actual dataset points
 plt.plot(inches, predicted_values, color='red', label='Predicted')        # Model predictions
+plt.title("Inches to Centimeters: Model Predictions")
 plt.xlabel('Inches')
 plt.ylabel('Centimeters')
+plt.grid(True)
 plt.legend()
 plt.show()
